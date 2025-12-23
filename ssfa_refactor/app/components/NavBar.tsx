@@ -3,27 +3,29 @@
 import Link from "next/link";
 import { useState } from "react";
 
+import Image from "next/image";
+
 export type NavLink = {
   href: string;
   label: string;
+  className?: string;
 };
 
 export type NavBarProps = {
-  brand?: string;
+  brandLogoSrc?: string;
   links?: NavLink[];
-  ctaHref?: string;
-  ctaLabel?: string;
 };
 
 export default function NavBar({
-  brand = "SSFA",
+  brandLogoSrc = "/SSFA-Logo.png",
   links = [
     { href: "/", label: "Home" },
+    { href: "/donate", label: "Donate", className: "bg-yellow-500 text-black hover:bg-yellow-600" },
+    { href: "/apply", label: "Apply", className: "bg-blue-500 text-white hover:bg-blue-600" },
     { href: "/about", label: "About" },
-    { href: "/donate", label: "Donate" },
+    { href: "/events", label: "Events" },
+    { href: "/contact", label: "Contact" },
   ],
-  ctaHref,
-  ctaLabel,
 }: NavBarProps) {
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -32,7 +34,7 @@ export default function NavBar({
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6">
         <div className="flex items-center gap-3">
           <Link href="/" className="text-base font-semibold tracking-tight text-foreground">
-            {brand}
+            <Image src={brandLogoSrc} alt="SSFA Logo" width={50} height={50} />
           </Link>
         </div>
 
@@ -41,19 +43,11 @@ export default function NavBar({
             <Link
               key={link.href}
               href={link.href}
-              className="text-sm text-foreground/80 transition-colors hover:text-foreground"
+              className={`text-sm text-foreground/80 transition-colors hover:text-foreground ${link.className ? link.className + ' rounded-md px-3 py-2 text-sm font-medium transition-opacity hover:opacity-90' : ''}`}
             >
               {link.label}
             </Link>
           ))}
-          {ctaHref && ctaLabel ? (
-            <Link
-              href={ctaHref}
-              className="rounded-md bg-foreground px-3 py-2 text-sm font-medium text-background transition-opacity hover:opacity-90"
-            >
-              {ctaLabel}
-            </Link>
-          ) : null}
         </nav>
 
         <button
@@ -94,21 +88,12 @@ export default function NavBar({
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="rounded-md px-2 py-2 text-sm text-foreground/90 hover:bg-foreground/5"
+                  className={`rounded-md px-2 py-2 text-sm text-foreground/90 hover:bg-foreground/5 ${link.className ? link.className + ' text-center' : ''}`}
                   onClick={() => setMobileOpen(false)}
                 >
                   {link.label}
                 </Link>
               ))}
-              {ctaHref && ctaLabel ? (
-                <Link
-                  href={ctaHref}
-                  className="mt-1 rounded-md bg-foreground px-3 py-2 text-center text-sm font-medium text-background"
-                  onClick={() => setMobileOpen(false)}
-                >
-                  {ctaLabel}
-                </Link>
-              ) : null}
             </div>
           </nav>
         </div>

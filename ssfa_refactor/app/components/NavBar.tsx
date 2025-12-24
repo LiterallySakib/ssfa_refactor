@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import Image from "next/image";
 
@@ -20,8 +20,8 @@ export default function NavBar({
   brandLogoSrc = "/SSFA-Logo.png",
   links = [
     { href: "/", label: "Home" },
-    { href: "/donate", label: "Donate", className: "bg-yellow-500 text-black hover:bg-yellow-600" },
-    { href: "/apply", label: "Apply", className: "bg-blue-500 text-white hover:bg-blue-600" },
+    { href: "/donate", label: "Donate", className: "bg-[var(--color-yellow-light)] text-black hover:bg-[var(--color-yellow)]" },
+    { href: "/apply", label: "Apply", className: "bg-[var(--color-blue-light)] text-black hover:bg-[var(--color-blue)]" },
     { href: "/about", label: "About" },
     { href: "/events", label: "Events" },
     { href: "/contact", label: "Contact" },
@@ -30,11 +30,11 @@ export default function NavBar({
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-40 w-full border-b border-black/10 bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6">
-        <div className="flex items-center gap-3">
-          <Link href="/" className="text-base font-semibold tracking-tight text-foreground">
-            <Image src={brandLogoSrc} alt="SSFA Logo" width={50} height={50} />
+    <header className="sticky top-0 z-40 w-full h-20 bg-white shadow-md">
+      <div className="mx-auto flex h-full max-w-6xl items-center justify-between px-4 sm:px-6">
+        <div className="flex items-center gap-3 h-full">
+          <Link href="/" className="text-base tracking-tight text-foreground h-full">
+             <Image src={brandLogoSrc} alt="SSFA Logo" width={60} height={60} className="h-[70%] w-auto" />
           </Link>
         </div>
 
@@ -43,7 +43,7 @@ export default function NavBar({
             <Link
               key={link.href}
               href={link.href}
-              className={`text-sm text-foreground/80 transition-colors hover:text-foreground ${link.className ? link.className + ' rounded-md px-3 py-2 text-sm font-medium transition-opacity hover:opacity-90' : ''}`}
+              className={`text-base text-black font-sans transition-colors hover:bg-gray-100 rounded-md px-3 py-2 ${link.className || ''}`}
             >
               {link.label}
             </Link>
@@ -88,7 +88,7 @@ export default function NavBar({
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`rounded-md px-2 py-2 text-sm text-foreground/90 hover:bg-foreground/5 ${link.className ? link.className + ' text-center' : ''}`}
+                  className={`text-base text-black font-sans transition-colors hover:bg-gray-100 rounded-md px-3 py-2 ${link.className || ''}`}
                   onClick={() => setMobileOpen(false)}
                 >
                   {link.label}

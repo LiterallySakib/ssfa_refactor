@@ -3,6 +3,13 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+
+  --color-blue: #2B7FAD;
+  --color-blue-light: rgba(43, 127, 173, 0.2);
+  --color-yellow: #FFAB03;
+  --color-yellow-light: rgba(255, 171, 3, 0.2);
+  --color-green: #629B21;
+  --color-green-light: rgba(98, 155, 33, 0.2);
 }
 
 @theme inline {
@@ -22,5 +29,5 @@
 body {
   background: white;
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Arial, sans-serif;
 }

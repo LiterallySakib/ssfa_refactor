@@ -1,7 +1,28 @@
+import { NewsListItem } from '../components/NewsListItem';
+
 export default function Events() {
+  const placeholderImage = "/placeholder-image.jpg"; // You might want to add a real placeholder image
+
+  const newsItems = Array.from({ length: 10 }).map((_, index) => ({
+    title: `Event Title ${index + 1}`,
+    description: `This is a short description for event ${index + 1}. It provides a brief overview of what the event is about.`,
+    date: `December ${20 - index}, 2025`,
+    link: `/events/${index + 1}`,
+    image: placeholderImage,
+  }));
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <h1>Events Page</h1>
-    </main>
+    <div className="container mx-auto p-4 flex flex-col items-center">
+      <h1 className="text-3xl font-bold mb-6">Events</h1>
+      <div className="grid gap-4 w-full md:w-3/4">
+        {newsItems.map((item, index) => (
+          <NewsListItem
+            key={index}
+            {...item}
+            backgroundColor={index % 2 === 0 ? 'bg-white' : 'bg-gray-100'}
+          />
+        ))}
+      </div>
+    </div>
   );
 }

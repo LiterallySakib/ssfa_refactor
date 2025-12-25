@@ -19,10 +19,8 @@ export default function Footer() {
       <div className="flex flex-col justify-center items-center p-2">
         {/* Bottom Row: 2 textboxes */}
         <div className="text-center mb-2">
-          <p>First textbox content</p>
-        </div>
-        <div className="text-center">
-          <p>Second textbox content</p>
+          <p>First textbox content<br />
+            Second textbox content</p>
         </div>
       </div>
     </footer>
